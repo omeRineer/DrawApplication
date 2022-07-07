@@ -84,9 +84,9 @@
             // 
             this.groupBox1.Controls.Add(this.cmbShapes);
             this.groupBox1.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(932, 12);
+            this.groupBox1.Location = new System.Drawing.Point(952, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 166);
+            this.groupBox1.Size = new System.Drawing.Size(230, 166);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Şekiller";
@@ -95,10 +95,11 @@
             // 
             this.cmbShapes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbShapes.FormattingEnabled = true;
-            this.cmbShapes.Location = new System.Drawing.Point(20, 47);
+            this.cmbShapes.Location = new System.Drawing.Point(20, 81);
             this.cmbShapes.Name = "cmbShapes";
-            this.cmbShapes.Size = new System.Drawing.Size(233, 37);
+            this.cmbShapes.Size = new System.Drawing.Size(192, 37);
             this.cmbShapes.TabIndex = 0;
+            this.cmbShapes.SelectedValueChanged += new System.EventHandler(this.cmbShapes_SelectedValueChanged);
             // 
             // pictureBox1
             // 
@@ -114,9 +115,9 @@
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(932, 197);
+            this.groupBox2.Location = new System.Drawing.Point(952, 197);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(269, 315);
+            this.groupBox2.Size = new System.Drawing.Size(230, 315);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Renkler";

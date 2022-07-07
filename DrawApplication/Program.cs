@@ -16,14 +16,18 @@ namespace DrawApplication
         [STAThread]
         static void Main()
         {
-            var shapes = new List<IShape> 
+            var shapes = new List<Shape>
             {
-                new DiagonalShape{ Name="Kare", DiagonalNumber=4 }
+                new Shapes.Rectangle {Id =1,Name="Dikdörtgen"},
+                new Square {Id =2,Name="Kare"},
+                new Ellipse {Id =3,Name="Elips"}
             };
 
             var colors = new List<Color>
             {
-                Color.White,Color.Red,Color.Green,Color.Blue,Color.Yellow
+                Color.Red,
+                Color.Green,
+                Color.Blue
             };
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
