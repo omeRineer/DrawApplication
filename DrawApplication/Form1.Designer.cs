@@ -37,11 +37,14 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.cmbColors = new System.Windows.Forms.ComboBox();
             btnSave = new System.Windows.Forms.Button();
             btnOpenFile = new System.Windows.Forms.Button();
             btnClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -114,13 +117,34 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.cmbColors);
             this.groupBox2.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox2.Location = new System.Drawing.Point(952, 197);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(230, 315);
+            this.groupBox2.Size = new System.Drawing.Size(230, 149);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Renkler";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 29;
+            this.listBox1.Location = new System.Drawing.Point(20, 100);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(192, 33);
+            this.listBox1.TabIndex = 2;
+            // 
+            // cmbColors
+            // 
+            this.cmbColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbColors.FormattingEnabled = true;
+            this.cmbColors.Location = new System.Drawing.Point(20, 57);
+            this.cmbColors.Name = "cmbColors";
+            this.cmbColors.Size = new System.Drawing.Size(192, 37);
+            this.cmbColors.TabIndex = 1;
+            this.cmbColors.SelectedIndexChanged += new System.EventHandler(this.cmbColors_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -138,6 +162,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -150,5 +175,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cmbShapes;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ComboBox cmbColors;
     }
 }

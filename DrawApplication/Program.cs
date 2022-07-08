@@ -23,11 +23,16 @@ namespace DrawApplication
                 new Ellipse {Id =3,Name="Elips"}
             };
 
-            var colors = new List<Color>
+            var colors = new List<DrawApplication.Colors.Color>
             {
-                Color.Red,
-                Color.Green,
-                Color.Blue
+                new DrawApplication.Colors.Color{Name="Kýrmýzý",Value=Color.Red},
+                new DrawApplication.Colors.Color{Name="Mavi",Value=Color.Blue},
+                new DrawApplication.Colors.Color{Name="Sarý",Value=Color.Yellow},
+                new DrawApplication.Colors.Color{Name="Turuncu",Value=Color.Orange},
+                new DrawApplication.Colors.Color{Name="Siyah",Value=Color.Black},
+                new DrawApplication.Colors.Color{Name="Kahverengi",Value=Color.Brown},
+                new DrawApplication.Colors.Color{Name="Mor",Value=Color.Purple},
+                new DrawApplication.Colors.Color{Name="Pembe",Value=Color.Pink}
             };
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);

@@ -15,7 +15,6 @@ namespace DrawApplication.Shapes
         public int Y { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
-        public Color Color { get; set; }
 
         public abstract void FillShape(Graphics graphics, SolidBrush brush);
     }

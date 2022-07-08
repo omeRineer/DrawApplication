@@ -13,37 +13,52 @@ namespace DrawApplication
 {
     public partial class Form1 : Form
     {
+        private Graphics graphics;
         private readonly List<Shape> _shapes;
-        private readonly List<Color> _colors;
-        private readonly Graphics graphics;
-        public Shape shape;
-        Color currentColor = Color.Red;
+        private readonly List<DrawApplication.Colors.Color> _colors;
+        Bitmap bitmap;
+        Shape shape;
+        Color currentColor;
 
-        public Form1(List<Shape> shapes, List<Color> colors)
+        public Form1(List<Shape> shapes, List<DrawApplication.Colors.Color> colors)
         {
             InitializeComponent();
 
-            graphics = pictureBox1.CreateGraphics();
-            _shapes = shapes;
+            NewWorkPage();
             _colors = colors;
+            _shapes = shapes;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (var fileDialog = new OpenFileDialog())
+            using (var saveDialog = new SaveFileDialog())
             {
-
+                saveDialog.Title = "Çalışmayı Kaydet";
+                saveDialog.Filter = "Bitmap | *.bmp| JPG File | *.jpg";
+                if (saveDialog.ShowDialog()==DialogResult.OK)
+                {
+                    bitmap.Save(saveDialog.FileName);
+                }
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            graphics.Clear(Form.DefaultBackColor);
+            bitmap.Dispose();
+            NewWorkPage();
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-
+            using (var openFileDialog=new OpenFileDialog())
+            {
+                openFileDialog.Title = "Bir Dosya Seçin";
+                openFileDialog.Filter = "Bitmap | *.bmp";
+                if (openFileDialog.ShowDialog()==DialogResult.OK)
+                {
+                    NewWorkPage(new Bitmap(openFileDialog.FileName));
+                }
+            }
         }
 
         private void cmbShapes_SelectedValueChanged(object sender, EventArgs e)
@@ -55,10 +70,8 @@ namespace DrawApplication
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cmbShapes.DataSource = _shapes.ToList();
-            cmbShapes.ValueMember = "Id";
-            cmbShapes.DisplayMember = "Name";
-
+            FillShapes();
+            FillColors();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -71,35 +84,38 @@ namespace DrawApplication
         {
             shape.Height = Math.Abs(e.Y - shape.Y);
             shape.Width = Math.Abs(e.X - shape.X);
-            using (var brush = new SolidBrush(shape.Color))
+            using (var brush = new SolidBrush(currentColor))
             {
                 shape.FillShape(graphics, brush);
             }
+            pictureBox1.Image = bitmap;
+        }
+
+        private void cmbColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var color = (DrawApplication.Colors.Color) cmbColors.SelectedItem;
+            currentColor = color.Value;
+            listBox1.BackColor=color.Value;
         }
 
         void FillColors()
         {
-            var array = _colors.ToArray();
-            int satir = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(array.Length / 3)));
-            int sutun = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(array.Length % 3) + 1));
-            Button[,] buttons = new Button[satir, sutun];
-            int xPoint = 20, yPoint = 50, index = 0;
-            for (int i = 0; i < satir; i++)
-            {
-                for (int j = 0; j < sutun; j++)
-                {
-                    buttons[i, j] = new Button();
-                    buttons[i, j].BackColor = array[index];
-                    buttons[i, j].Size = new Size(60, 60);
-                    buttons[i, j].Location = new Point(xPoint, yPoint);
-                    groupBox2.Controls.Add(buttons[i, j]);
-                    xPoint += 66;
-                    index++;
-                }
-                xPoint = 20;
-                yPoint += 66;
-            }
+            cmbColors.DataSource = _colors.ToList();
+            cmbColors.DisplayMember = "Name";
+            cmbColors.ValueMember = "Value";
         }
-
+        void FillShapes()
+        {
+            cmbShapes.DataSource = _shapes.ToList();
+            cmbShapes.ValueMember = "Id";
+            cmbShapes.DisplayMember = "Name";
+        }
+        void NewWorkPage(Bitmap newBitmap=null)
+        {
+            bitmap = newBitmap!=null ? newBitmap
+                                                : new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            graphics=Graphics.FromImage(bitmap);
+            pictureBox1.Image = bitmap;
+        }
     }
 }
