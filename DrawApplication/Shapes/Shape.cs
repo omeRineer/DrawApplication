@@ -11,6 +11,7 @@ namespace DrawApplication.Shapes
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Color Color { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public float Width { get; set; }
